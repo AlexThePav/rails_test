@@ -7,5 +7,27 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
+
+<h2>Comments</h2>
+<%= render @article.comments %>
+
+<h2>Add a comment:</h2>
+<%= form_with(model: [@article, @article.comments.build], 
+              local: true) do |f| %>
+
+<p>
+  <%= f.label :commenter %><br>
+  <%= f.text_field :commenter %>
+</p>
+<p>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>
+
 <%= link_to 'Edit Article', edit_article_path(@article) %>
 <%= link_to 'Back to Articles', articles_path %>
